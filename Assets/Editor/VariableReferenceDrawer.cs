@@ -5,7 +5,7 @@ namespace ModularCraftingSystem
 {
     [CustomPropertyDrawer(typeof(FloatReference))]
     [CustomPropertyDrawer(typeof(StringReference))]
-    public class FloatReferenceDrawer : PropertyDrawer
+    public class VariableReferenceDrawer : PropertyDrawer
     {
         private readonly string[] popupMenuOptions = { "Use Default", "Override" };
         private GUIStyle popupStyle;
