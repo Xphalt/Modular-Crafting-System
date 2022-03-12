@@ -15,12 +15,12 @@ MonoBehaviour:
   resourceName:
     useConstant: 1
     constantValue: 
-    variable: {fileID: 0}
+    variable: {fileID: 11400000, guid: 175141e21cd980149a21f8cf5c6cea06, type: 2}
   resourceWeight:
     useConstant: 1
     constantValue: 0
-    variable: {fileID: 0}
+    variable: {fileID: 11400000, guid: e862a3dafce3698488dc73c8bcc36e3e, type: 2}
   resourceToughness:
     useConstant: 1
     constantValue: 0
-    variable: {fileID: 0}
+    variable: {fileID: 11400000, guid: e792194f4f7521b4db19293aff3b946c, type: 2}
