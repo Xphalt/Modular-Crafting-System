@@ -12,11 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9c9cea4914310147a84c3c54366ff5f, type: 3}
   m_Name: Stone
   m_EditorClassIdentifier: 
+  resourceName:
+    useConstant: 1
+    constantValue: 
+    variable: {fileID: 11400000, guid: 8e9b4bf1708d3c54686d64c1dc07a362, type: 2}
   resourceWeight:
     useConstant: 1
     constantValue: 0
-    variable: {fileID: 0}
+    variable: {fileID: 11400000, guid: 5f449d89fb5ca0b44a0bcbf472631018, type: 2}
   resourceToughness:
     useConstant: 1
     constantValue: 0
-    variable: {fileID: 0}
+    variable: {fileID: 11400000, guid: 3124d75cfe0133646bdde21dc0bae4d5, type: 2}

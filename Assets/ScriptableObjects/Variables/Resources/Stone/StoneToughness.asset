@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7bc337e9cf730894db82e347d2fe3f90, type: 3}
   m_Name: StoneToughness
   m_EditorClassIdentifier: 
-  value: 0
+  value: 50
