@@ -6,7 +6,7 @@ namespace ModularCraftingSystem
 {
     public class MCS_EditorWindow : EditorWindow
     {
-        public ResourceList resourceList;
+        public MCS_ResourceList resourceList;
 
         [MenuItem("Window/Modular Crafting System/Resource Editor")]
         public static void ShowWindow()
@@ -20,27 +20,33 @@ namespace ModularCraftingSystem
 
         public void OnGUI()
         {
-            GUILayout.Label("Create resource", EditorStyles.boldLabel);
             GUILayout.BeginHorizontal();
-            //GUILayout.BeginVertical();
+            GUILayout.Label("Resource Editor", EditorStyles.boldLabel);
 
-            if (GUILayout.Button("Create new resource")) { CreateResource(); }
-            if (GUILayout.Button("Edit resource")) { EditResource(); }
+            if (resourceList != null)
+            {
+                if (GUILayout.Button("Show Resource List"))
+                {
+                    EditorUtility.FocusProjectWindow();
+                    Selection.activeObject = resourceList;
+                }
+            }
 
+            if (GUILayout.Button("Open Resource List"))
+            {
+                OpenResourceList();
+            }
 
+            if (GUILayout.Button("New Resource List"))
+            {
+                EditorUtility.FocusProjectWindow();
+                Selection.activeObject = resourceList;
+            }
 
+            GUILayout.EndHorizontal();
         }
 
-
-
-        private void CreateResource()
-        {
-            throw new NotImplementedException();
-        }
-
-
-
-        private void EditResource()
+        private void OpenResourceList()
         {
             throw new NotImplementedException();
         }

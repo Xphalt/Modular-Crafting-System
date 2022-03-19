@@ -1,9 +1,10 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 namespace ModularCraftingSystem
 {
-    public class ResourceList
+    public class MCS_ResourceList : ScriptableObject
     {
-        
+        public List<MCS_Resource> resourceList;
     }
 }
