@@ -6,7 +6,7 @@ namespace ModularCraftingSystem
 {
     public class MCS_EditorWindow : EditorWindow
     {
-        public MCS_ResourceList resourceList;
+        public MCS_Resource resource;
 
         [MenuItem("Window/Modular Crafting System/Resource Editor")]
         public static void ShowWindow()
@@ -15,38 +15,67 @@ namespace ModularCraftingSystem
         }
 
 
-
+        private string resourceFolderPath;
+        private bool showGroup = false;
 
 
         public void OnGUI()
         {
-            GUILayout.BeginHorizontal();
             GUILayout.Label("Resource Editor", EditorStyles.boldLabel);
+            GUILayout.Space(5);
 
-            if (resourceList != null)
-            {
-                if (GUILayout.Button("Show Resource List"))
-                {
-                    EditorUtility.FocusProjectWindow();
-                    Selection.activeObject = resourceList;
-                }
-            }
+            GUILayout.BeginHorizontal();
+            resourceFolderPath = GUILayout.TextField(resourceFolderPath);
 
-            if (GUILayout.Button("Open Resource List"))
+            if(GUILayout.Button("Change Resource Folder"))
             {
-                OpenResourceList();
-            }
-
-            if (GUILayout.Button("New Resource List"))
-            {
-                EditorUtility.FocusProjectWindow();
-                Selection.activeObject = resourceList;
             }
 
             GUILayout.EndHorizontal();
+
+            //foreach (MCS_Resource item in AssetDatabase.)
+            //{
+
+            //}
+
+            HeaderGroup();
         }
 
-        private void OpenResourceList()
+        private void HeaderGroup()
+        {
+            showGroup = EditorGUILayout.BeginFoldoutHeaderGroup(showGroup, "Test");
+            if (showGroup)
+            {
+                GUILayout.BeginHorizontal();
+
+                if (resource == null)
+                {
+                    if (GUILayout.Button("Edit Resource"))
+                    {
+                        EditResource();
+                    }
+
+                    if (GUILayout.Button("New Resource"))
+                    {
+                        MCS_CreateResource.CreateResource();
+                    }
+                }
+
+                else
+                {
+                    if (GUILayout.Button("Show Resources"))
+                    {
+                        EditorUtility.FocusProjectWindow();
+                        Selection.activeObject = resource;
+                    }
+                }
+
+
+                GUILayout.EndHorizontal();
+            }
+        }
+
+        private void EditResource()
         {
             throw new NotImplementedException();
         }

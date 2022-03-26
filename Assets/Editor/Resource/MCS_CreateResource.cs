@@ -3,13 +3,16 @@ using UnityEditor;
 
 namespace ModularCraftingSystem
 {
-    public class CreateResource
+    public class MCS_CreateResource
     {
-        public static MCS_ResourceList CreateResourceList()
+        public static MCS_Resource CreateResource()
         {
-            MCS_ResourceList asset = ScriptableObject.CreateInstance<MCS_ResourceList>();
-            AssetDatabase.CreateAsset(asset, "Test/ResourceList.asset");
+            MCS_Resource asset = ScriptableObject.CreateInstance<MCS_Resource>();
+            AssetDatabase.CreateAsset(asset, "Assets/NewResource.asset");
             AssetDatabase.SaveAssets();
+
+            EditorUtility.FocusProjectWindow();
+            Selection.activeObject = asset;
 
             return asset;
         }
