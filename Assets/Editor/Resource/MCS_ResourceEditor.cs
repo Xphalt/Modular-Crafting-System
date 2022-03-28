@@ -6,6 +6,8 @@ namespace ModularCraftingSystem
 {
     public class MCS_EditorWindow : EditorWindow
     {
+        #region Create Window
+
         public MCS_Resource resource;
 
         [MenuItem("Window/Modular Crafting System/Resource Editor")]
@@ -14,64 +16,68 @@ namespace ModularCraftingSystem
             GetWindow<MCS_EditorWindow>("Modular Crafting System");
         }
 
+        #endregion
 
         private string resourceFolderPath;
-        private bool showGroup = false;
-
+        private bool showSettings = false;
 
         public void OnGUI()
         {
             GUILayout.Label("Resource Editor", EditorStyles.boldLabel);
             GUILayout.Space(5);
 
-            GUILayout.BeginHorizontal();
-            resourceFolderPath = GUILayout.TextField(resourceFolderPath);
+            HeaderGroup("Settings", ResourceSettings);
+            HeaderGroup("Edit", ResourceEdit);
+        }
 
-            if(GUILayout.Button("Change Resource Folder"))
+        private void HeaderGroup(string _headerName, Action _callback)
+        {
+            showSettings = EditorGUILayout.BeginFoldoutHeaderGroup(showSettings, _headerName);
+
+            if (showSettings)
             {
+                _callback?.Invoke();
+            }
+
+            EditorGUILayout.EndFoldoutHeaderGroup();
+        }
+
+        private void ResourceSettings()
+        {
+            GUILayout.BeginHorizontal();
+
+            resourceFolderPath = GUILayout.TextField(resourceFolderPath, GUILayout.Width(200));
+
+            if (GUILayout.Button("Change Resource Folder"))
+            {
+                resourceFolderPath = EditorUtility.OpenFilePanel(string.Empty, string.Empty, "asset");
             }
 
             GUILayout.EndHorizontal();
-
-            //foreach (MCS_Resource item in AssetDatabase.)
-            //{
-
-            //}
-
-            HeaderGroup();
         }
 
-        private void HeaderGroup()
+        private void ResourceEdit()
         {
-            showGroup = EditorGUILayout.BeginFoldoutHeaderGroup(showGroup, "Test");
-            if (showGroup)
+            if (resource == null)
             {
-                GUILayout.BeginHorizontal();
-
-                if (resource == null)
+                if (GUILayout.Button("Edit Resource"))
                 {
-                    if (GUILayout.Button("Edit Resource"))
-                    {
-                        EditResource();
-                    }
-
-                    if (GUILayout.Button("New Resource"))
-                    {
-                        MCS_CreateResource.CreateResource();
-                    }
+                    EditResource();
                 }
 
-                else
+                if (GUILayout.Button("New Resource"))
                 {
-                    if (GUILayout.Button("Show Resources"))
-                    {
-                        EditorUtility.FocusProjectWindow();
-                        Selection.activeObject = resource;
-                    }
+                    MCS_CreateResource.CreateResource();
                 }
+            }
 
-
-                GUILayout.EndHorizontal();
+            else
+            {
+                if (GUILayout.Button("Show Resources"))
+                {
+                    EditorUtility.FocusProjectWindow();
+                    Selection.activeObject = resource;
+                }
             }
         }
 
