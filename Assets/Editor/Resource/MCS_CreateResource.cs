@@ -9,7 +9,12 @@ namespace ModularCraftingSystem
         {
             MCS_Resource asset = ScriptableObject.CreateInstance<MCS_Resource>();
 
-            string filePath = AssetDatabase.GenerateUniqueAssetPath("Assets/NewResource.asset");
+            if (!AssetDatabase.IsValidFolder("Assets/Resources"))
+            {
+                AssetDatabase.CreateFolder("Assets", "Resources");
+            }
+
+            string filePath = AssetDatabase.GenerateUniqueAssetPath("Assets/Resources/NewResource.asset");
 
             AssetDatabase.CreateAsset(asset, filePath);
             AssetDatabase.SaveAssets();
