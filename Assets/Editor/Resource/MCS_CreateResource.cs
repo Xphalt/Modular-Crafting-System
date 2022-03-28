@@ -8,7 +8,10 @@ namespace ModularCraftingSystem
         public static MCS_Resource CreateResource()
         {
             MCS_Resource asset = ScriptableObject.CreateInstance<MCS_Resource>();
-            AssetDatabase.CreateAsset(asset, "Assets/NewResource.asset");
+
+            string filePath = AssetDatabase.GenerateUniqueAssetPath("Assets/NewResource.asset");
+
+            AssetDatabase.CreateAsset(asset, filePath);
             AssetDatabase.SaveAssets();
 
             EditorUtility.FocusProjectWindow();

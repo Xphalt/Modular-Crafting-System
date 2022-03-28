@@ -50,7 +50,7 @@ namespace ModularCraftingSystem
 
             if (GUILayout.Button("Change Resource Folder"))
             {
-                resourceFolderPath = EditorUtility.OpenFilePanel(string.Empty, string.Empty, "asset");
+                resourceFolderPath = EditorUtility.OpenFolderPanel(string.Empty, "Assets", string.Empty);
             }
 
             GUILayout.EndHorizontal();
@@ -58,26 +58,20 @@ namespace ModularCraftingSystem
 
         private void ResourceEdit()
         {
-            if (resource == null)
+            if (GUILayout.Button("Edit Resource"))
             {
-                if (GUILayout.Button("Edit Resource"))
-                {
-                    EditResource();
-                }
-
-                if (GUILayout.Button("New Resource"))
-                {
-                    MCS_CreateResource.CreateResource();
-                }
+                EditResource();
             }
 
-            else
+            if (GUILayout.Button("New Resource"))
             {
-                if (GUILayout.Button("Show Resources"))
-                {
-                    EditorUtility.FocusProjectWindow();
-                    Selection.activeObject = resource;
-                }
+                MCS_CreateResource.CreateResource();
+            }
+
+            if (GUILayout.Button("Show Resources"))
+            {
+                EditorUtility.FocusProjectWindow();
+                Selection.activeObject = resource;
             }
         }
 
