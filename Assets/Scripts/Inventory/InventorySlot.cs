@@ -22,6 +22,11 @@ namespace ModularCraftingSystem
             ClearSlot();
         }
 
+        public void UpdateInventorySlot(InventoryItemData _data, int _amount)
+        {
+            itemData = _data;
+            stackSize = _amount;
+        }
         public void ClearSlot()
         {
             itemData = null;

@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using System.Linq;
 
 namespace ModularCraftingSystem
 {
@@ -25,8 +26,43 @@ namespace ModularCraftingSystem
 
         public bool AddToInventory(InventoryItemData _itemToAdd, int _amount)
         {
-            inventorySlots[0] = new InventorySlot(_itemToAdd, _amount);
-            return true;
+            if (ContainsItem(_itemToAdd, out List<InventorySlot> _inventorySlot))
+            {
+                foreach (var slot in _inventorySlot)
+                {
+                    if (slot.SpaceInStack(_amount))
+                    {
+                        slot.AddToStack(_amount);
+                        onInventorySlotChanged?.Invoke(slot);
+
+                        return true;
+                    }
+                }
+            }
+
+            if (HasFreeSlot(out InventorySlot _freeSlot))
+            {
+                _freeSlot.UpdateInventorySlot(_itemToAdd, _amount);
+                onInventorySlotChanged?.Invoke(_freeSlot);
+
+                return true;
+            }
+
+            return false;
+        }
+
+        public bool ContainsItem(InventoryItemData _itemData, out List<InventorySlot> _inventorySlot)
+        {
+            _inventorySlot = inventorySlots.Where(i => i.GetItemData == _itemData).ToList();
+
+            return _inventorySlot == null ? false : true;
+        }
+
+        public bool HasFreeSlot(out InventorySlot _freeSlot)
+        {
+            _freeSlot = inventorySlots.FirstOrDefault(i => i.GetItemData == null);
+
+            return _freeSlot == null ? false : true;
         }
     }
 }
