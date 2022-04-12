@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: TestItem
   m_EditorClassIdentifier: 
   icon: {fileID: 0}
-  maxStackSize: 1
+  maxStackSize: 99
