@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f315f2429047fb24aa5819e85508b067, type: 3}
   m_Name: Stone
   m_EditorClassIdentifier: 
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: e191aa8ce4bc2a040bf1eae45b03639c, type: 3}
   maxStackSize: 99
