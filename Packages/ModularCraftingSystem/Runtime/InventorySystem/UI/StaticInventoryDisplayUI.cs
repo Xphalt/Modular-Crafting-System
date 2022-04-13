@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace ModularCraftingSystem
 {
-    public class StaticInventoryDisplay : InventoryDisplay
+    public class StaticInventoryDisplayUI : InventoryDisplayUI
     {
         [SerializeField] private InventoryHolder inventoryHolder;
         [SerializeField] private InventorySlotUI[] slots;
@@ -15,20 +15,20 @@ namespace ModularCraftingSystem
             if (inventoryHolder != null)
             {
                 inventorySystem = inventoryHolder.GetInventorySystem;
-                inventorySystem.onInventorySlotChanged += UpdateSlot;
+                inventorySystem.GetInventorySlotChanged += UpdateSlot;
             }
 
             else { Debug.LogWarning($"No inventory assigned to: {this.gameObject}"); }
 
-            AssignSlots(inventorySystem);
+            AssignSlot(inventorySystem);
         }
-        public override void AssignSlots(InventorySystem _inventory)
+        public override void AssignSlot(InventorySystem _inventory)
         {
             inventorySlotDictionary = new Dictionary<InventorySlotUI, InventorySlot>();
 
-            if (slots.Length != inventorySystem.inventorySize) { Debug.LogWarning($"Inventory slots dont match inventory size! {this.gameObject} will not be added."); }
+            if (slots.Length != inventorySystem.GetInventorySize) { Debug.LogWarning($"Inventory slots dont match inventory size! {this.gameObject} will not be added."); }
 
-            for(int i = 0; i < inventorySystem.inventorySize; i++)
+            for(int i = 0; i < inventorySystem.GetInventorySize; i++)
             {
                 inventorySlotDictionary.Add(slots[i], inventorySystem.GetInventorySlots[i]);
                 slots[i].InitialiseSlot(inventorySystem.GetInventorySlots[i]);

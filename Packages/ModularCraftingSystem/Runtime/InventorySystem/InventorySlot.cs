@@ -9,7 +9,7 @@ namespace ModularCraftingSystem
         [SerializeField] private int stackSize;
 
         public InventoryItemData GetItemData => itemData;
-        public int StackSize => stackSize;
+        public int GetStackSize => stackSize;
 
         public InventorySlot(InventoryItemData _source, int _amount)
         {
@@ -30,7 +30,19 @@ namespace ModularCraftingSystem
         public void ClearSlot()
         {
             itemData = null;
-            stackSize = -1;
+            stackSize = 0;
+        }
+
+        public void AssignItem(InventorySlot _slot)
+        {
+            if (itemData == _slot.itemData) { AddToStack(_slot.stackSize); }
+
+            else
+            {
+                itemData = _slot.itemData;
+                stackSize = 0;
+                AddToStack(_slot.stackSize);
+            }
         }
 
         public bool SpaceInStack(int _amountToAdd)

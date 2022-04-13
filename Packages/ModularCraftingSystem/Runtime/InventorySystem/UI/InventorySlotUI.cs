@@ -12,8 +12,8 @@ namespace ModularCraftingSystem
 
         private Button button;
 
-        public InventorySlot GetInventorySlot => assignedInventorySlot;
-        public InventoryDisplay inventoryDisplay { get; private set; }
+        public InventorySlot GetAssignedInventorySlot => assignedInventorySlot;
+        public InventoryDisplayUI GetInventoryDisplay { get; private set; }
 
         private void Awake()
         {
@@ -21,7 +21,7 @@ namespace ModularCraftingSystem
 
             button = GetComponent<Button>();
             button?.onClick.AddListener(OnUISlotClick);
-            inventoryDisplay = transform.GetComponent<InventoryDisplay>();
+            GetInventoryDisplay = transform.parent.GetComponent<InventoryDisplayUI>();
         }
 
         public void InitialiseSlot(InventorySlot _slot)
@@ -37,7 +37,7 @@ namespace ModularCraftingSystem
                 itemSprite.sprite = _slot.GetItemData.icon;
                 itemSprite.color = Color.white;
 
-                if (_slot.StackSize > 1) { itemCount.text = _slot.StackSize.ToString(); }
+                if (_slot.GetStackSize > 1) { itemCount.text = _slot.GetStackSize.ToString(); }
                 else { itemCount.text = ""; }
             }
 
@@ -50,7 +50,7 @@ namespace ModularCraftingSystem
             if (assignedInventorySlot.GetItemData != null) { UpdateUISlot(assignedInventorySlot); }
         }
 
-        private void ClearSlot()
+        public void ClearSlot()
         {
             assignedInventorySlot?.ClearSlot();
             itemSprite.sprite = null;
@@ -60,7 +60,7 @@ namespace ModularCraftingSystem
 
         public void OnUISlotClick()
         {
-            inventoryDisplay?.SlotClicked(this);
+            GetInventoryDisplay?.SlotClicked(this);
         }
     }
 }

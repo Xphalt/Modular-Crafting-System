@@ -5,16 +5,16 @@ using UnityEngine.InputSystem;
 
 namespace ModularCraftingSystem
 {
-    public abstract class InventoryDisplay : MonoBehaviour
+    public abstract class InventoryDisplayUI : MonoBehaviour
     {
+        [SerializeField] TempItemSlotUI temporaryItemSlot;
 
         protected InventorySystem inventorySystem;
         protected Dictionary<InventorySlotUI, InventorySlot> inventorySlotDictionary;
-
+        
         public InventorySystem GetInventorySystem => inventorySystem;
-        public Dictionary<InventorySlotUI, InventorySlot> GetInventoryDictionary => inventorySlotDictionary;
-
-        public abstract void AssignSlots(InventorySystem _inventory);
+        public Dictionary<InventorySlotUI, InventorySlot> GetInventorySlotDictionary => inventorySlotDictionary;
+        public abstract void AssignSlot(InventorySystem _inventorySystemToDisplay);
 
         protected virtual void Start() { }
         protected virtual void UpdateSlot(InventorySlot _updatedSlot)
@@ -30,7 +30,13 @@ namespace ModularCraftingSystem
 
         public void SlotClicked(InventorySlotUI _clickedSlot)
         {
-            Debug.Log("Slot clicked!");
+            if ((_clickedSlot.GetAssignedInventorySlot.GetItemData != null) && (temporaryItemSlot.tempAssignedInventorySlot.GetItemData == null))
+            {
+                temporaryItemSlot.UpdateTempSlot(_clickedSlot.GetAssignedInventorySlot);
+                _clickedSlot.ClearSlot();
+
+                return;
+            }
         }
     }
 }

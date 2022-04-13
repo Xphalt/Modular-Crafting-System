@@ -9,10 +9,11 @@ namespace ModularCraftingSystem
     public class InventorySystem
     {
         [SerializeField] private List<InventorySlot> inventorySlots;
-        public int inventorySize => GetInventorySlots.Count;
-        public UnityAction<InventorySlot> onInventorySlotChanged;
 
+        public UnityAction<InventorySlot> onInventorySlotChanged;
         public List<InventorySlot> GetInventorySlots => inventorySlots;
+        public int GetInventorySize => GetInventorySlots.Count;
+        public UnityAction<InventorySlot> GetInventorySlotChanged { get { return onInventorySlotChanged; } set { onInventorySlotChanged = value; } }
 
         public InventorySystem(int _size)
         {
