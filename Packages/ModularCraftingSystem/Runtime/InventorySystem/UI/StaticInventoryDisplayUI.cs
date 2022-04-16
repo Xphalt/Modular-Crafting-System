@@ -15,7 +15,7 @@ namespace ModularCraftingSystem
             if (inventoryHolder != null)
             {
                 inventorySystem = inventoryHolder.GetInventorySystem;
-                inventorySystem.GetInventorySlotChanged += UpdateSlot;
+                inventorySystem.onInventorySlotChanged += UpdateSlot;
             }
 
             else { Debug.LogWarning($"No inventory assigned to: {this.gameObject}"); }

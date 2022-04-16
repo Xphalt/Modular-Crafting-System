@@ -41,20 +41,25 @@ namespace ModularCraftingSystem
                 else { itemCount.text = ""; }
             }
 
-            else { ClearSlot(); }
+            else
+            {
+                itemSprite.color = Color.clear;
+                itemSprite.sprite = null;
+                itemCount.text = "";
+            }
 
         }
 
         public void UpdateUISlot()
         {
-            if (assignedInventorySlot.GetItemData != null) { UpdateUISlot(assignedInventorySlot); }
+            if (assignedInventorySlot != null) { UpdateUISlot(assignedInventorySlot); }
         }
 
         public void ClearSlot()
         {
             assignedInventorySlot?.ClearSlot();
-            itemSprite.sprite = null;
             itemSprite.color = Color.clear;
+            itemSprite.sprite = null;
             itemCount.text = "";
         }
 

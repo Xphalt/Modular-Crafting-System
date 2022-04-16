@@ -23,8 +23,8 @@ namespace ModularCraftingSystem
         {
             tempAssignedInventorySlot.AssignItem(_slot);
             itemSprite.sprite = _slot.GetItemData.icon;
-            itemSprite.color = Color.white;
             itemCount.text = _slot.GetStackSize.ToString();
+            itemSprite.color = Color.white;
         }
 
         private void Update()
