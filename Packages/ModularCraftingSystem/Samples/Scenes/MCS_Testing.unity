@@ -1835,6 +1835,10 @@ PrefabInstance:
       propertyPath: m_Material
       value: 
       objectReference: {fileID: 13400000, guid: ef291401ad39c524fb81cd5da4cb57a6, type: 2}
+    - target: {fileID: 7096340875350470117, guid: 017978eb19281c1418786835093348d2, type: 3}
+      propertyPath: inventorySystem.inventorySlots.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7096340875350470118, guid: 017978eb19281c1418786835093348d2, type: 3}
       propertyPath: m_RootOrder
       value: 2

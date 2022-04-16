@@ -45,18 +45,17 @@ namespace ModularCraftingSystem
             }
         }
 
-        public bool SpaceInStack(int _amountToAdd)
-        {
-            if (stackSize + _amountToAdd <= itemData.maxStackSize) { return true; }
-            else return false;
-        }
-
         public bool SpaceInStack(int _amountToAdd, out int _amountRemaining)
         {
             _amountRemaining = itemData.maxStackSize - stackSize;
             return SpaceInStack(_amountToAdd);
         }
 
+        public bool SpaceInStack(int _amountToAdd)
+        {
+            if (stackSize + _amountToAdd <= itemData.maxStackSize) { return true; }
+            else return false;
+        }
 
         public void AddToStack(int _amount)
         {
