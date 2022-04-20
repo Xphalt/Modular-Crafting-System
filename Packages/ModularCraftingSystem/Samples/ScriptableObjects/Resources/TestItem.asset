@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f315f2429047fb24aa5819e85508b067, type: 3}
-  m_Name: Obsidian
+  m_Name: TestItem
   m_EditorClassIdentifier: 
-  icon: {fileID: 21300000, guid: dcb1fe896ba7ab0488591df2960ccd89, type: 3}
-  maxStackSize: 99
+  icon: {fileID: 0}
+  maxStackSize: 64

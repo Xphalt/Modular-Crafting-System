@@ -5,13 +5,13 @@ namespace ModularCraftingSystem
     [System.Serializable]
     public class InventorySlot
     {
-        [SerializeField] private InventoryItemData itemData;
+        [SerializeField] private InventoryResourceData itemData;
         [SerializeField] private int stackSize;
 
-        public InventoryItemData GetItemData => itemData;
+        public InventoryResourceData GetItemData => itemData;
         public int GetStackSize => stackSize;
 
-        public InventorySlot(InventoryItemData _source, int _amount)
+        public InventorySlot(InventoryResourceData _source, int _amount)
         {
             itemData = _source;
             stackSize = _amount;
@@ -22,11 +22,12 @@ namespace ModularCraftingSystem
             ClearSlot();
         }
 
-        public void UpdateInventorySlot(InventoryItemData _data, int _amount)
+        public void UpdateInventorySlot(InventoryResourceData _data, int _amount)
         {
             itemData = _data;
             stackSize = _amount;
         }
+
         public void ClearSlot()
         {
             itemData = null;
@@ -53,8 +54,8 @@ namespace ModularCraftingSystem
 
         public bool SpaceInStack(int _amountToAdd)
         {
-            if (stackSize + _amountToAdd <= itemData.maxStackSize) { return true; }
-            else return false;
+            if (itemData == null || itemData != null && stackSize + _amountToAdd <= itemData.maxStackSize) { return true; }
+            else { return false; }
         }
 
         public void AddToStack(int _amount)

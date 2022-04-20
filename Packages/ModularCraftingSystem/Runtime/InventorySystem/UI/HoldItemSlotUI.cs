@@ -7,11 +7,11 @@ using System.Collections.Generic;
 
 namespace ModularCraftingSystem
 {
-    public class TempItemSlotUI : MonoBehaviour
+    public class HoldItemSlotUI : MonoBehaviour
     {
         public Image itemSprite;
         public TMP_Text itemCount;
-        public InventorySlot tempAssignedInventorySlot;
+        public InventorySlot holdAssignedInventorySlot;
 
         private void Awake()
         {
@@ -21,7 +21,7 @@ namespace ModularCraftingSystem
 
         public void UpdateTempSlot(InventorySlot _slot)
         {
-            tempAssignedInventorySlot.AssignItem(_slot);
+            holdAssignedInventorySlot.AssignItem(_slot);
             itemSprite.sprite = _slot.GetItemData.icon;
             itemCount.text = _slot.GetStackSize.ToString();
             itemSprite.color = Color.white;
@@ -29,7 +29,7 @@ namespace ModularCraftingSystem
 
         private void Update()
         {
-            if(tempAssignedInventorySlot.GetItemData != null)
+            if(holdAssignedInventorySlot.GetItemData != null)
             {
                 transform.position = Mouse.current.position.ReadValue();
             
@@ -39,7 +39,7 @@ namespace ModularCraftingSystem
 
         public void ClearSlot()
         {
-            tempAssignedInventorySlot.ClearSlot();
+            holdAssignedInventorySlot.ClearSlot();
             itemCount.text = "";
             itemSprite.color = Color.clear;
             itemSprite.sprite = null;

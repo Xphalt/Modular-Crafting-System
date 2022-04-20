@@ -7,13 +7,14 @@ namespace ModularCraftingSystem
 {
     public abstract class InventoryDisplayUI : MonoBehaviour
     {
-        [SerializeField] TempItemSlotUI temporaryItemSlot;
+        [SerializeField] HoldItemSlotUI holdItemSlot;
 
         protected InventorySystem inventorySystem;
         protected Dictionary<InventorySlotUI, InventorySlot> inventorySlotDictionary;
         
         public InventorySystem GetInventorySystem => inventorySystem;
         public Dictionary<InventorySlotUI, InventorySlot> GetInventorySlotDictionary => inventorySlotDictionary;
+
         public abstract void AssignSlot(InventorySystem _inventorySystemToDisplay);
 
         protected virtual void Start() { }
@@ -33,12 +34,12 @@ namespace ModularCraftingSystem
             bool bIsAltKeyPressed = Keyboard.current.leftShiftKey.isPressed;
 
             // If clicked slot has item but temp doesn't
-            if (_clickedSlot.GetAssignedInventorySlot.GetItemData != null && temporaryItemSlot.tempAssignedInventorySlot.GetItemData == null)
+            if (_clickedSlot.GetAssignedInventorySlot.GetItemData != null && holdItemSlot.holdAssignedInventorySlot.GetItemData == null)
             {
                 // If alt key is being pressed, split stack
                 if (bIsAltKeyPressed && _clickedSlot.GetAssignedInventorySlot.SplitStack(out InventorySlot _halfStackSlot))
                 {
-                    temporaryItemSlot.UpdateTempSlot(_halfStackSlot);
+                    holdItemSlot.UpdateTempSlot(_halfStackSlot);
                     _clickedSlot.UpdateUISlot();
 
                     return;
@@ -46,7 +47,7 @@ namespace ModularCraftingSystem
 
                 else
                 {
-                    temporaryItemSlot.UpdateTempSlot(_clickedSlot.GetAssignedInventorySlot);
+                    holdItemSlot.UpdateTempSlot(_clickedSlot.GetAssignedInventorySlot);
                     _clickedSlot.ClearSlot();
 
                     return;
@@ -55,44 +56,44 @@ namespace ModularCraftingSystem
             }
 
             // If clicked slot doesn't have item but temp does
-            if (_clickedSlot.GetAssignedInventorySlot.GetItemData == null && temporaryItemSlot.tempAssignedInventorySlot.GetItemData != null)
+            if (_clickedSlot.GetAssignedInventorySlot.GetItemData == null && holdItemSlot.holdAssignedInventorySlot.GetItemData != null)
             {
 
-                _clickedSlot.GetAssignedInventorySlot.AssignItem(temporaryItemSlot.tempAssignedInventorySlot);
+                _clickedSlot.GetAssignedInventorySlot.AssignItem(holdItemSlot.holdAssignedInventorySlot);
                 _clickedSlot.UpdateUISlot();
 
-                temporaryItemSlot.ClearSlot();
+                holdItemSlot.ClearSlot();
 
                 return;
             }
 
 
-            if (_clickedSlot.GetAssignedInventorySlot.GetItemData != null && temporaryItemSlot.tempAssignedInventorySlot.GetItemData != null)
+            if (_clickedSlot.GetAssignedInventorySlot.GetItemData != null && holdItemSlot.holdAssignedInventorySlot.GetItemData != null)
             {
-                bool bIsSameItem = _clickedSlot.GetAssignedInventorySlot.GetItemData == temporaryItemSlot.tempAssignedInventorySlot.GetItemData;
+                bool bIsSameItem = _clickedSlot.GetAssignedInventorySlot.GetItemData == holdItemSlot.holdAssignedInventorySlot.GetItemData;
 
-                if (!bIsSameItem && _clickedSlot.GetAssignedInventorySlot.SpaceInStack(temporaryItemSlot.tempAssignedInventorySlot.GetStackSize))
+                if (!bIsSameItem && _clickedSlot.GetAssignedInventorySlot.SpaceInStack(holdItemSlot.holdAssignedInventorySlot.GetStackSize))
                 {
-                    _clickedSlot.GetAssignedInventorySlot.AssignItem(temporaryItemSlot.tempAssignedInventorySlot);
+                    _clickedSlot.GetAssignedInventorySlot.AssignItem(holdItemSlot.holdAssignedInventorySlot);
                     _clickedSlot.UpdateUISlot();
-                    temporaryItemSlot.ClearSlot();
+                    holdItemSlot.ClearSlot();
 
                     return;
                 }
 
-                else if (bIsSameItem && !_clickedSlot.GetAssignedInventorySlot.SpaceInStack(temporaryItemSlot.tempAssignedInventorySlot.GetStackSize, out int leftInStack))
+                else if (bIsSameItem && !_clickedSlot.GetAssignedInventorySlot.SpaceInStack(holdItemSlot.holdAssignedInventorySlot.GetStackSize, out int leftInStack))
                 {
                     if (leftInStack < 1) { SwapSlots(_clickedSlot); }
 
                     else
                     {
-                        int remainingTemp = temporaryItemSlot.tempAssignedInventorySlot.GetStackSize - leftInStack;
+                        int remainingTemp = holdItemSlot.holdAssignedInventorySlot.GetStackSize - leftInStack;
                         _clickedSlot.GetAssignedInventorySlot.AddToStack(leftInStack);
                         _clickedSlot.UpdateUISlot();
 
-                        var newItem = new InventorySlot(temporaryItemSlot.tempAssignedInventorySlot.GetItemData, remainingTemp);
-                        temporaryItemSlot.ClearSlot();
-                        temporaryItemSlot.UpdateTempSlot(newItem);
+                        var newItem = new InventorySlot(holdItemSlot.holdAssignedInventorySlot.GetItemData, remainingTemp);
+                        holdItemSlot.ClearSlot();
+                        holdItemSlot.UpdateTempSlot(newItem);
 
                         return;
                     }
@@ -109,9 +110,11 @@ namespace ModularCraftingSystem
 
         private void SwapSlots(InventorySlotUI _clickedSlot)
         {
-            var clonedSlot = new InventorySlot(temporaryItemSlot.tempAssignedInventorySlot.GetItemData, temporaryItemSlot.tempAssignedInventorySlot.GetStackSize);
-            temporaryItemSlot.ClearSlot();
-            temporaryItemSlot.UpdateTempSlot(_clickedSlot.GetAssignedInventorySlot);
+            var clonedSlot = new InventorySlot(holdItemSlot.holdAssignedInventorySlot.GetItemData, holdItemSlot.holdAssignedInventorySlot.GetStackSize);
+
+            holdItemSlot.ClearSlot();
+            holdItemSlot.UpdateTempSlot(_clickedSlot.GetAssignedInventorySlot);
+
             _clickedSlot.ClearSlot();
             _clickedSlot.GetAssignedInventorySlot.AssignItem(clonedSlot);
             _clickedSlot.UpdateUISlot();

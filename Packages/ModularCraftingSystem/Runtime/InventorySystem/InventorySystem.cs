@@ -9,11 +9,11 @@ namespace ModularCraftingSystem
     public class InventorySystem
     {
         [SerializeField] private List<InventorySlot> inventorySlots;
-
         public UnityAction<InventorySlot> onInventorySlotChanged;
+
         public List<InventorySlot> GetInventorySlots => inventorySlots;
         public int GetInventorySize => GetInventorySlots.Count;
-        //public UnityAction<InventorySlot> GetInventorySlotChanged { get { return onInventorySlotChanged; } set { onInventorySlotChanged = value; } }
+
 
         public InventorySystem(int _size)
         {
@@ -25,7 +25,7 @@ namespace ModularCraftingSystem
             }
         }
 
-        public bool AddToInventory(InventoryItemData _itemToAdd, int _amount)
+        public bool AddToInventory(InventoryResourceData _itemToAdd, int _amount)
         {
             if (ContainsItem(_itemToAdd, out List<InventorySlot> _inventorySlot))
             {
@@ -43,16 +43,19 @@ namespace ModularCraftingSystem
 
             if (HasFreeSlot(out InventorySlot _freeSlot))
             {
-                _freeSlot.UpdateInventorySlot(_itemToAdd, _amount);
-                onInventorySlotChanged?.Invoke(_freeSlot);
+                if (_freeSlot.SpaceInStack(_amount))
+                {
+                    _freeSlot.UpdateInventorySlot(_itemToAdd, _amount);
+                    onInventorySlotChanged?.Invoke(_freeSlot);
 
-                return true;
+                    return true;
+                }
             }
 
             return false;
         }
 
-        public bool ContainsItem(InventoryItemData _itemData, out List<InventorySlot> _inventorySlot)
+        public bool ContainsItem(InventoryResourceData _itemData, out List<InventorySlot> _inventorySlot)
         {
             _inventorySlot = inventorySlots.Where(i => i.GetItemData == _itemData).ToList();
 

@@ -22,6 +22,7 @@ namespace ModularCraftingSystem
 
             AssignSlot(inventorySystem);
         }
+
         public override void AssignSlot(InventorySystem _inventory)
         {
             inventorySlotDictionary = new Dictionary<InventorySlotUI, InventorySlot>();
@@ -33,7 +34,6 @@ namespace ModularCraftingSystem
                 inventorySlotDictionary.Add(slots[i], inventorySystem.GetInventorySlots[i]);
                 slots[i].InitialiseSlot(inventorySystem.GetInventorySlots[i]);
             }
-
         }
     }
 }

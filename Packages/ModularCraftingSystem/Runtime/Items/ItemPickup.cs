@@ -5,8 +5,8 @@ namespace ModularCraftingSystem
     [RequireComponent(typeof(SphereCollider))]
     public class ItemPickup : MonoBehaviour
     {
-        public float pickupRadius = 1;
-        public InventoryItemData itemData;
+        public float pickupRadius = 1f;
+        public InventoryResourceData itemData;
 
         private SphereCollider sphereCollider;
 
@@ -20,7 +20,9 @@ namespace ModularCraftingSystem
         private void OnTriggerEnter(Collider other)
         {
             var inventory = other.transform.GetComponent<InventoryHolder>();
-            if (!inventory) return;
+
+            if (!inventory) { return; }
+
             if (inventory.GetInventorySystem.AddToInventory(itemData, 1))
             {
                 Destroy(this.gameObject);
