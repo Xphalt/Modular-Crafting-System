@@ -9,6 +9,7 @@ namespace ModularCraftingSystem
         public Transform craftingSlotTransform;
         [SerializeField] private int gridSize;
         [SerializeField] private List<InventorySlotUI> inventorySlotUIs;
+        private List<CraftingRecipeData> listOfRecipes;
 
         public int GetGridSize => gridSize;
 

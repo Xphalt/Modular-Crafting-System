@@ -33,10 +33,10 @@ namespace ModularCraftingSystem
         {
             bool bIsAltKeyPressed = Keyboard.current.leftShiftKey.isPressed;
 
-            // If clicked slot has item but temp doesn't
+            // Clicked slot != null | Hold slot == null
             if (_clickedSlot.GetAssignedInventorySlot.GetItemData != null && holdItemSlot.holdAssignedInventorySlot.GetItemData == null)
             {
-                // If alt key is being pressed, split stack
+                // Shortcut key == true
                 if (bIsAltKeyPressed && _clickedSlot.GetAssignedInventorySlot.SplitStack(out InventorySlot _halfStackSlot))
                 {
                     holdItemSlot.UpdateTempSlot(_halfStackSlot);
@@ -45,6 +45,7 @@ namespace ModularCraftingSystem
                     return;
                 }
 
+                // Shortcut key == false
                 else
                 {
                     holdItemSlot.UpdateTempSlot(_clickedSlot.GetAssignedInventorySlot);
@@ -55,7 +56,7 @@ namespace ModularCraftingSystem
 
             }
 
-            // If clicked slot doesn't have item but temp does
+            // Clicked slot == null | Hold slot != null
             if (_clickedSlot.GetAssignedInventorySlot.GetItemData == null && holdItemSlot.holdAssignedInventorySlot.GetItemData != null)
             {
 
@@ -67,12 +68,13 @@ namespace ModularCraftingSystem
                 return;
             }
 
-
+            // Clicked slot != null | Hold slot != null
             if (_clickedSlot.GetAssignedInventorySlot.GetItemData != null && holdItemSlot.holdAssignedInventorySlot.GetItemData != null)
             {
                 bool bIsSameItem = _clickedSlot.GetAssignedInventorySlot.GetItemData == holdItemSlot.holdAssignedInventorySlot.GetItemData;
 
-                if (!bIsSameItem && _clickedSlot.GetAssignedInventorySlot.SpaceInStack(holdItemSlot.holdAssignedInventorySlot.GetStackSize))
+                // Same item == true | Space in stack == true 
+                if (bIsSameItem && _clickedSlot.GetAssignedInventorySlot.SpaceInStack(holdItemSlot.holdAssignedInventorySlot.GetStackSize))
                 {
                     _clickedSlot.GetAssignedInventorySlot.AssignItem(holdItemSlot.holdAssignedInventorySlot);
                     _clickedSlot.UpdateUISlot();
@@ -81,6 +83,7 @@ namespace ModularCraftingSystem
                     return;
                 }
 
+                // Same item == true | Space in stack == false
                 else if (bIsSameItem && !_clickedSlot.GetAssignedInventorySlot.SpaceInStack(holdItemSlot.holdAssignedInventorySlot.GetStackSize, out int leftInStack))
                 {
                     if (leftInStack < 1) { SwapSlots(_clickedSlot); }
