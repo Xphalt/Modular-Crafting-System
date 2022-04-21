@@ -1,7 +1,9 @@
 {
     "name": "xphalt.modularcraftingsystem.editor",
     "rootNamespace": "",
-    "references": [],
+    "references": [
+        "GUID:90cdb865e83763546a4e210bc568463a"
+    ],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
