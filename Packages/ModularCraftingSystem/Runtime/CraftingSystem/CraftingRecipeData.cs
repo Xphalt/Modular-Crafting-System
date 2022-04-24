@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace ModularCraftingSystem
@@ -15,5 +16,20 @@ namespace ModularCraftingSystem
         public InventoryResourceData item8;
         public InventoryResourceData item9;
         public InventoryResourceData outputItem;
+
+        public List<InventoryResourceData> listOfComponents;
+
+        private void Awake()
+        {
+            listOfComponents.Add(item1);
+            listOfComponents.Add(item2);
+            listOfComponents.Add(item3);
+            listOfComponents.Add(item4);
+            listOfComponents.Add(item5);
+            listOfComponents.Add(item6);
+            listOfComponents.Add(item7);
+            listOfComponents.Add(item8);
+            listOfComponents.Add(item9);
+        }
     }
 }

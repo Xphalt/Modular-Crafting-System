@@ -3008,6 +3008,7 @@ GameObject:
   - component: {fileID: 6487800822495913508}
   - component: {fileID: 5781259699705815717}
   - component: {fileID: 5426832158048634561}
+  - component: {fileID: 5426832158048634562}
   m_Layer: 5
   m_Name: Crafting
   m_TagString: Untagged
@@ -3041,6 +3042,23 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!114 &5426832158048634562
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5426832158048634560}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b5ae095e8cd0dd4fa4f89eb8dd6b7f9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  craftingSlotTransform: {fileID: 2377069179987401600}
+  gridSize: 0
+  listOfinventorySlotUIs: []
+  listOfRecipes:
+  - {fileID: 11400000, guid: 7329e52f92c5cb649b2b1b158e3835b6, type: 2}
 --- !u!114 &5781259699705815717
 MonoBehaviour:
   m_ObjectHideFlags: 0

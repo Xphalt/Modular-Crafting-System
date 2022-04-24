@@ -8,31 +8,38 @@ namespace ModularCraftingSystem
     {
         public Transform craftingSlotTransform;
         [SerializeField] private int gridSize;
-        [SerializeField] private List<InventorySlotUI> inventorySlotUIs;
-        private List<CraftingRecipeData> listOfRecipes;
+        [SerializeField] private List<InventorySlotUI> listOfinventorySlotUIs;
+        [SerializeField] private List<CraftingRecipeData> listOfRecipes;
 
         public int GetGridSize => gridSize;
 
         private void Awake()
         {
-            inventorySlotUIs = new List<InventorySlotUI>();
+            listOfinventorySlotUIs = new List<InventorySlotUI>();
 
             for (int i = 0; i < craftingSlotTransform.childCount; i++)
             {
-                inventorySlotUIs.Add(craftingSlotTransform.GetChild(i).GetComponent<InventorySlotUI>());
+                listOfinventorySlotUIs.Add(craftingSlotTransform.GetChild(i).GetComponent<InventorySlotUI>());
             }
 
-            gridSize = inventorySlotUIs.Count;
+            gridSize = listOfinventorySlotUIs.Count;
         }
 
-        public bool IsSlotFull(InventorySlotUI _inventorySlotUI)
+        public void CheckItemInSlot()
         {
-            if (_inventorySlotUI.GetAssignedInventorySlot.GetItemData == null)
+            foreach (InventorySlotUI slot in listOfinventorySlotUIs)
             {
-                return false;
+                foreach (CraftingRecipeData recipe in listOfRecipes)
+                {
+                    foreach (InventoryResourceData item in recipe.listOfComponents)
+                    {
+                        if (slot.GetAssignedInventorySlot.GetItemData != null && slot.GetAssignedInventorySlot.GetItemData == item)
+                        {
+                            Debug.Log("Y");
+                        }
+                    }
+                }
             }
-
-            return true;
         }
     }
 }
