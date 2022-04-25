@@ -10,6 +10,7 @@ namespace ModularCraftingSystem
         [SerializeField] private int gridSize;
         [SerializeField] private List<InventorySlotUI> listOfinventorySlotUIs;
         [SerializeField] private List<CraftingRecipeData> listOfRecipes;
+        public CraftingRecipeData recipe;
 
         public int GetGridSize => gridSize;
 
@@ -25,19 +26,19 @@ namespace ModularCraftingSystem
             gridSize = listOfinventorySlotUIs.Count;
         }
 
-        public void CheckItemInSlot()
+        private void Update()
         {
-            foreach (InventorySlotUI slot in listOfinventorySlotUIs)
+            CheckSlotMatchesRecipe();
+        }
+
+        public void CheckSlotMatchesRecipe()
+        {
+            for (int i = 0; i < gridSize; i++)
             {
-                foreach (CraftingRecipeData recipe in listOfRecipes)
+                if (listOfinventorySlotUIs.ToArray()[i].GetAssignedInventorySlot.GetItemData != null &&
+                    listOfinventorySlotUIs.ToArray()[i].GetAssignedInventorySlot.GetItemData == recipe.listOfComponents.ToArray()[i])
                 {
-                    foreach (InventoryResourceData item in recipe.listOfComponents)
-                    {
-                        if (slot.GetAssignedInventorySlot.GetItemData != null && slot.GetAssignedInventorySlot.GetItemData == item)
-                        {
-                            Debug.Log("Y");
-                        }
-                    }
+                    Debug.Log("Y");
                 }
             }
         }
