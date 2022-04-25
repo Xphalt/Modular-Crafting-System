@@ -31,5 +31,7 @@ namespace ModularCraftingSystem
             listOfComponents.Add(item8);
             listOfComponents.Add(item9);
         }
+
+        public InventoryResourceData GetOutput() { return outputItem; }
     }
 }

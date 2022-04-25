@@ -7,10 +7,11 @@ namespace ModularCraftingSystem
     public class CraftingSystem : MonoBehaviour
     {
         public Transform craftingSlotTransform;
+        public InventorySlotUI outputSlot;
         [SerializeField] private int gridSize;
         [SerializeField] private List<InventorySlotUI> listOfinventorySlotUIs;
         [SerializeField] private List<CraftingRecipeData> listOfRecipes;
-        public CraftingRecipeData recipe;
+        //public CraftingRecipeData recipe;
 
         public int GetGridSize => gridSize;
 
@@ -26,21 +27,58 @@ namespace ModularCraftingSystem
             gridSize = listOfinventorySlotUIs.Count;
         }
 
-        private void Update()
+        public void Update()
         {
-            CheckSlotMatchesRecipe();
+            InventoryResourceData craftingResult = null;
+
+            craftingResult = LoopThroughRecipes();
+            CreateOutput(craftingResult);
         }
 
-        public void CheckSlotMatchesRecipe()
+        public void CreateOutput(InventoryResourceData craftingResult)
         {
+            outputSlot.GetAssignedInventorySlot.UpdateInventorySlot(craftingResult, 1);
+            outputSlot.UpdateUISlot();
+            
+        }
+
+        private InventoryResourceData LoopThroughRecipes()
+        {
+            InventoryResourceData craftingResult = null;
+
+            foreach (CraftingRecipeData recipe in listOfRecipes)
+            {
+                craftingResult = LoopThroughSlots(recipe);
+
+                if (craftingResult == null) { break; }
+            }
+
+            return craftingResult;
+        }
+
+        private InventoryResourceData LoopThroughSlots(CraftingRecipeData recipe)
+        {
+            InventoryResourceData craftingResult = null;
+
             for (int i = 0; i < gridSize; i++)
             {
-                if (listOfinventorySlotUIs.ToArray()[i].GetAssignedInventorySlot.GetItemData != null &&
-                    listOfinventorySlotUIs.ToArray()[i].GetAssignedInventorySlot.GetItemData == recipe.listOfComponents.ToArray()[i])
-                {
-                    Debug.Log("Y");
-                }
+                craftingResult = DoesSlotItemMatchRecipe(recipe, i);
+
+                if (!craftingResult) { return null; }
             }
+
+            return craftingResult;
+        }
+
+        private InventoryResourceData DoesSlotItemMatchRecipe(CraftingRecipeData recipe, int i)
+        {
+            if (/*listOfinventorySlotUIs.ToArray()[i].GetAssignedInventorySlot.GetItemData != null &&*/
+                listOfinventorySlotUIs.ToArray()[i].GetAssignedInventorySlot.GetItemData != recipe.listOfComponents.ToArray()[i])
+            {
+                return null;
+            }
+
+            return recipe.GetOutput();
         }
     }
 }

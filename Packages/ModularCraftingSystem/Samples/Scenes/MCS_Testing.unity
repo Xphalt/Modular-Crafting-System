@@ -3055,11 +3055,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   craftingSlotTransform: {fileID: 2377069179987401600}
+  outputSlot: {fileID: 899028798}
   gridSize: 0
   listOfinventorySlotUIs: []
   listOfRecipes:
   - {fileID: 11400000, guid: 7329e52f92c5cb649b2b1b158e3835b6, type: 2}
-  recipe: {fileID: 11400000, guid: 7329e52f92c5cb649b2b1b158e3835b6, type: 2}
 --- !u!114 &5781259699705815717
 MonoBehaviour:
   m_ObjectHideFlags: 0
