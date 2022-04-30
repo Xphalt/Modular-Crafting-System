@@ -17,6 +17,8 @@ namespace ModularCraftingSystem
 
         private void Awake()
         {
+            gameObject.SetActive(false);
+
             listOfSlots = new List<InventorySlotUI>();
 
             for (int i = 0; i < craftingSlotTransform.childCount; i++)

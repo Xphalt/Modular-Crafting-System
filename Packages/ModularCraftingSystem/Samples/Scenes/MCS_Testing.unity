@@ -3172,6 +3172,10 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: ef8c84500c094b247acbedfcc8246047, type: 2}
+    - target: {fileID: 5556340984472967429, guid: 017978eb19281c1418786835093348d2, type: 3}
+      propertyPath: craftingSystem
+      value: 
+      objectReference: {fileID: 5426832158048634562}
     - target: {fileID: 7096340875350470116, guid: 017978eb19281c1418786835093348d2, type: 3}
       propertyPath: m_Material
       value: 

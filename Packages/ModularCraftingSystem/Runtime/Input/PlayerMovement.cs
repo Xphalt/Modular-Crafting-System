@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace ModularCraftingSystem
 {
@@ -11,6 +12,7 @@ namespace ModularCraftingSystem
         private bool groundedPlayer;
         private float playerSpeed = 2.0f;
         private float gravityValue = -9.81f;
+        public CraftingSystem craftingSystem;
 
         private void Awake()
         {
@@ -30,6 +32,9 @@ namespace ModularCraftingSystem
 
         void Update()
         {
+            if (Keyboard.current.eKey.isPressed && craftingSystem.gameObject.activeSelf) { craftingSystem.gameObject.SetActive(false); }
+            if (Keyboard.current.qKey.isPressed && !craftingSystem.gameObject.activeSelf) { craftingSystem.gameObject.SetActive(true); }
+
             groundedPlayer = controller.isGrounded;
             if (groundedPlayer && playerVelocity.y < 0)
             {
