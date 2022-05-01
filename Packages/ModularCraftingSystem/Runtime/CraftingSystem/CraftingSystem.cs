@@ -12,8 +12,10 @@ namespace ModularCraftingSystem
         [SerializeField] private int gridSize;
         [SerializeField] private List<InventorySlotUI> listOfSlots;
         [SerializeField] private List<CraftingRecipeData> listOfRecipes;
+        private List<InventoryItemData> listOfGridItem;
 
         public int GetGridSize => gridSize;
+        public List<InventorySlotUI> GetGridSlots => listOfSlots;
 
         private void Awake()
         {
@@ -31,7 +33,12 @@ namespace ModularCraftingSystem
 
         public void Update()
         {
-            List<InventoryItemData> listOfGridItem = new List<InventoryItemData>();
+            CheckRecipe();
+        }
+
+        private void CheckRecipe()
+        {
+            listOfGridItem = new List<InventoryItemData>();
 
             foreach (InventorySlotUI slot in listOfSlots)
             {
@@ -47,7 +54,7 @@ namespace ModularCraftingSystem
             }
         }
 
-        public void CreateOutput(InventoryItemData craftingResult)
+        private void CreateOutput(InventoryItemData craftingResult)
         {
             outputSlot.GetAssignedInventorySlot.UpdateInventorySlot(craftingResult, 1);
             outputSlot.UpdateUISlot();

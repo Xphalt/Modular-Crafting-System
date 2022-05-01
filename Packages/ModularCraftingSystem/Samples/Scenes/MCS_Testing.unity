@@ -1311,6 +1311,38 @@ PrefabInstance:
       propertyPath: m_Name
       value: OutputSlot
       objectReference: {fileID: 0}
+    - target: {fileID: 8015470103571772571, guid: 48c142c9fe42a4446ac683ef11a20de9, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8015470103571772571, guid: 48c142c9fe42a4446ac683ef11a20de9, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8015470103571772571, guid: 48c142c9fe42a4446ac683ef11a20de9, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 987299009}
+    - target: {fileID: 8015470103571772571, guid: 48c142c9fe42a4446ac683ef11a20de9, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8015470103571772571, guid: 48c142c9fe42a4446ac683ef11a20de9, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SlotClicked
+      objectReference: {fileID: 0}
+    - target: {fileID: 8015470103571772571, guid: 48c142c9fe42a4446ac683ef11a20de9, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: ModularCraftingSystem.OutputSlot, xphalt.modularcraftingsystem.runtime
+      objectReference: {fileID: 0}
+    - target: {fileID: 8015470103571772571, guid: 48c142c9fe42a4446ac683ef11a20de9, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
+      value: 
+      objectReference: {fileID: 899028798}
+    - target: {fileID: 8015470103571772571, guid: 48c142c9fe42a4446ac683ef11a20de9, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: ModularCraftingSystem.InventorySlotUI, xphalt.modularcraftingsystem.runtime
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 48c142c9fe42a4446ac683ef11a20de9, type: 3}
 --- !u!224 &899028793 stripped
@@ -1449,13 +1481,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 987299007}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4beb73e5610d6d041b4d22b80d952529, type: 3}
+  m_Script: {fileID: 11500000, guid: 294f8e7ebb87ad4479b207acc19f7417, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   holdItemSlot: {fileID: 1021180631}
   inventoryHolder: {fileID: 987299010}
   slots:
   - {fileID: 899028798}
+  craftingSystem: {fileID: 5426832158048634562}
 --- !u!114 &987299010
 MonoBehaviour:
   m_ObjectHideFlags: 0
