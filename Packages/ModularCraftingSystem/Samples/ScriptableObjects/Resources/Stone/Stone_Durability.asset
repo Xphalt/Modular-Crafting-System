@@ -9,8 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f315f2429047fb24aa5819e85508b067, type: 3}
-  m_Name: Iron
+  m_Script: {fileID: 11500000, guid: 3337d588f6edf2942ad3e570b812bdd6, type: 3}
+  m_Name: Stone_Durability
   m_EditorClassIdentifier: 
-  icon: {fileID: 21300000, guid: c13355242c59e7b428a75848e9fd2062, type: 3}
-  maxStackSize: 64
+  value: 64

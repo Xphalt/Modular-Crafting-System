@@ -6,18 +6,18 @@ namespace ModularCraftingSystem
     [CreateAssetMenu(menuName = "Modular Crafting System/Crafting/Recipe", fileName = "NewCraftingRecipe")]
     public class CraftingRecipeData : ScriptableObject
     {
-        public InventoryResourceData item1;
-        public InventoryResourceData item2;
-        public InventoryResourceData item3;
-        public InventoryResourceData item4;
-        public InventoryResourceData item5;
-        public InventoryResourceData item6;
-        public InventoryResourceData item7;
-        public InventoryResourceData item8;
-        public InventoryResourceData item9;
-        public InventoryResourceData outputItem;
+        public InventoryItemData item1;
+        public InventoryItemData item2;
+        public InventoryItemData item3;
+        public InventoryItemData item4;
+        public InventoryItemData item5;
+        public InventoryItemData item6;
+        public InventoryItemData item7;
+        public InventoryItemData item8;
+        public InventoryItemData item9;
+        public InventoryItemData outputItem;
 
-        public List<InventoryResourceData> listOfComponents;
+        public List<InventoryItemData> listOfComponents;
 
         private void Awake()
         {
@@ -32,6 +32,6 @@ namespace ModularCraftingSystem
             listOfComponents.Add(item9);
         }
 
-        public InventoryResourceData GetOutput() { return outputItem; }
+        public InventoryItemData GetOutput() { return outputItem; }
     }
 }

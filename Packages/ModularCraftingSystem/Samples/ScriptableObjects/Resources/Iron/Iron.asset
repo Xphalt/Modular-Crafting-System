@@ -10,7 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f315f2429047fb24aa5819e85508b067, type: 3}
-  m_Name: Stone
+  m_Name: Iron
   m_EditorClassIdentifier: 
-  icon: {fileID: 21300000, guid: e191aa8ce4bc2a040bf1eae45b03639c, type: 3}
+  icon: {fileID: 21300000, guid: c13355242c59e7b428a75848e9fd2062, type: 3}
   maxStackSize: 64
+  listOfAttribute:
+  - {fileID: 11400000, guid: 38d33c18fbf8a8049ac5255077b8fe3d, type: 2}

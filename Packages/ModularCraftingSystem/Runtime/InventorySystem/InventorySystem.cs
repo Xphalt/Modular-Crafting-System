@@ -25,7 +25,7 @@ namespace ModularCraftingSystem
             }
         }
 
-        public bool AddToInventory(InventoryResourceData _itemToAdd, int _amount)
+        public bool AddToInventory(InventoryItemData _itemToAdd, int _amount)
         {
             if (ContainsItem(_itemToAdd, out List<InventorySlot> _inventorySlot))
             {
@@ -55,7 +55,7 @@ namespace ModularCraftingSystem
             return false;
         }
 
-        public bool ContainsItem(InventoryResourceData _itemData, out List<InventorySlot> _inventorySlot)
+        public bool ContainsItem(InventoryItemData _itemData, out List<InventorySlot> _inventorySlot)
         {
             _inventorySlot = inventorySlots.Where(i => i.GetItemData == _itemData).ToList();
 

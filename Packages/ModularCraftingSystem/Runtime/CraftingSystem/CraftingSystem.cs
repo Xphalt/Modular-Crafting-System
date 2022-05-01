@@ -31,7 +31,7 @@ namespace ModularCraftingSystem
 
         public void Update()
         {
-            List<InventoryResourceData> listOfGridItem = new List<InventoryResourceData>();
+            List<InventoryItemData> listOfGridItem = new List<InventoryItemData>();
 
             foreach (InventorySlotUI slot in listOfSlots)
             {
@@ -47,7 +47,7 @@ namespace ModularCraftingSystem
             }
         }
 
-        public void CreateOutput(InventoryResourceData craftingResult)
+        public void CreateOutput(InventoryItemData craftingResult)
         {
             outputSlot.GetAssignedInventorySlot.UpdateInventorySlot(craftingResult, 1);
             outputSlot.UpdateUISlot();

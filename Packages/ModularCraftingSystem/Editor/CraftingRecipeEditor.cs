@@ -51,7 +51,7 @@ namespace ModularCraftingSystem
             serializedObject.ApplyModifiedProperties();
         }
 
-        private void CreateItemDisplay(CraftingRecipeData _data, InventoryResourceData _inventoryResourceData, string _name)
+        private void CreateItemDisplay(CraftingRecipeData _data, InventoryItemData _inventoryResourceData, string _name)
         {
             EditorGUILayout.BeginVertical();
 

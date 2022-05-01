@@ -6,7 +6,7 @@ namespace ModularCraftingSystem
     public class ItemPickup : MonoBehaviour
     {
         public float pickupRadius = 1f;
-        public InventoryResourceData itemData;
+        public InventoryItemData itemData;
 
         private SphereCollider sphereCollider;
 
