@@ -1,6 +1,6 @@
 {
   "name": "com.xphalt.modularcraftingsystem",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "displayName": "Modular Crafting System",
   "description": "Simple, extensible package for creating crafting systems",
   "unity": "2020.3",
